@@ -8,3 +8,6 @@ class Task (models.Model):
     is_completed = models.BooleanField(default=False)
     task_date = models.DateField()
     task_category = models.ManyToManyField(Category)
+
+    def __str__ (self):
+        return self.taskTitle
