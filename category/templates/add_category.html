@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
+<div style="background-color: rgb(241, 252, 222); height: 100vh;" class="p-5">
+    <div class="card m-auto" style="width: 28rem;">
+        <div class="card-body">
+            <h2 class="text-center">Add a category</h2>
+            <form class="m-auto" method="POST">
+                {% csrf_token %} {{form | crispy}}
+                <div class="d-flex flex-column justify-content-container align-items-center">
+                    <button class="btn btn-success w-25">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

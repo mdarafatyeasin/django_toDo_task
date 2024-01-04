@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<h2 class="text-center mt-3 mb-3">Your Daily Task</h2>
+<div class="d-flex flex-wrap justify-content-center w-75 m-auto gap-3">
+    {% for task in data %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{task.taskTitle}}</h5>
+            {% if task.is_completed %}
+            <h6 class="card-subtitle mb-2 text-success">Complete</h6>
+            {% else %}
+            <h6 class="card-subtitle mb-2 text-danger">Not Complete</h6>
+            {% endif %}
+            <p class="card-text">{{task.taskDescription}}</p>
+            <h6>
+                {% for category in task.task_category.all %}
+                <span class="badge bg-secondary">{{category.category}}</span> {% endfor %}
+            </h6>
+            {% if task.is_completed == False %}
+            <a href="{% url 'edit_task' task.id %}" class="card-link">
+                <iconify-icon icon="uiw:edit" style="font-size: 18px; color: rgb(0, 0, 86);"></iconify-icon>
+            </a>
+            <a href="{% url 'delete_task' task.id %}" class="card-link">
+                <iconify-icon icon="fluent:delete-28-filled" style="font-size: 20px; color: rgb(255, 63, 102);"></iconify-icon>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
